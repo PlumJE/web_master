@@ -35,8 +35,8 @@ name = 50;
 const num1 = 10;
 // num1 = 20;
 
-let pi = 3.1415; // 변하지 않는 고정값.
-console.log(2 * 4 * pi);
+let tau = 6.283; // 변하지 않는 고정값.
+console.log(4 * pi);
 
 let countPerStudent = 5;
 let average_per_student = 4;
