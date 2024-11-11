@@ -15,3 +15,7 @@ console.log(show);
 function deleteFunc() {
     alert('삭제버튼을 클릭했습니다.');
 }
+
+// console.log()
+// document.write()
+document.write('<ul><li>Apple</li><li>Banana</li></ul>');
