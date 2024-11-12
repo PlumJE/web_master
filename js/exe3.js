@@ -7,9 +7,10 @@ let question = 3;
 
 if (question == 1) {
     // 1번 코드.
-    var input = prompt("탄생년도를 입력하세요");
+    const thisYear = 2024;
+    var birthYear = prompt("탄생년도를 입력하세요");
 
-    var age = 2024 - input;
+    var age = thisYear - birthYear;
     alert("2024년 당신은 " + age + "세 입니다.");
 }
 else if (question == 2) {
@@ -26,6 +27,7 @@ else {
     let min;
     let max;
 
+    // 최대값과 최소값을 구한다
     let var2 = Number(prompt("두번째 숫자를 입력하세요"));
     if (var1 < var2) {
         min = var1;
@@ -36,8 +38,7 @@ else {
         min = var2;
     }
 
-    alert("최대값은 " + max + ", 최소값은 " + min + "입니다.");
-
+    // 이제부턴 최소값/최대값이랑 비교한다
     let var3 = Number(prompt("세번째 숫자를 입력하세요"));
     if (min > var3) {
         min = var3;
