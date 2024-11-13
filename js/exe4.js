@@ -6,7 +6,7 @@
 
 console.log('exe4.js');
 
-var scores = [];
+var scores = [];    // 10, 20, 30, 40, 50
 const len = 5;
 for (var i = 0; i < len; i++) {
     input = prompt(`${i + 1}번째 친구의 점수를 입력`);
@@ -26,4 +26,4 @@ for (var i = 0; i < scores.length; i++) {
     }
 }
 
-alert(`우리반 평균은 ${sum / scores.length}이고, 최고점은 ${max}이고, 최저점은 ${min}이다.`);
+alert("우리반 평균은 " + (sum / scores.length) + "이고, 최고점은 " + max + "이고, 최저점은 " + min + "이다.");
