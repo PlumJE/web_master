@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경색 변경</title>
+    <style>
+        #container {
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        li {
+            display: inline-block;
+            padding: 10px;
+            list-style: none;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        #result {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul>
+            <li>green</li>
+            <li>orange</li>
+            <li>purple</li>
+        </ul>
+        <div id="result" style="background: blueviolet;"></div>
+    </div>
+    <script>
+        // 기능구현.
+        function changeColor(the_color) {
+            //document.getElementById("result").style.background = the_color;
+            result.style.background = the_color;
+        }
+
+        let list = document.querySelectorAll('li');
+        for (let i = 0; i < list.length; i++) {
+            list[i].addEventListener('click', (e) => changeColor(e.target.innerHTML));
+        }
+        // document.querySelector('li:nth-child(1)').onclick = (e) => changeColor(e.target.innerHTML);
+        // document.querySelector('li:nth-child(2)').onclick = (e) => changeColor(e.target.innerHTML);
+        // document.querySelector('li:nth-child(3)').onclick = (e) => changeColor(e.target.innerHTML);
+
+        // document.querySelectorAll(...) : 선택자에 해당하는 모든 요소를 배열로 가져온다!
+
+        // 이벤트 핸들러(함수)의 매개값으론 event객체가 전달된다!
+    </script>
+</body>
+
+</html>
