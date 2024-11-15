@@ -47,30 +47,41 @@
         </div>
     </div>
     <script>
-        // 임의의 숫자 6개 생성 : 1 ~ 45 범위
-        function generateLotto() {
-            // 배열 numbers1 = [1~45]를 만든다
-            let numbers1 = [];
-            for (let i = 1; i <= 45; i++) {
-                numbers1.push(i);
-            }
+        // 1. button클릭하는 이벤트.
+        btn.onclick = function() {
+            let ary = generateNumber();
 
-            // 배열 numbers1에서 랜덤으로 1개씩 숫자를 뽑는다. 이를 6번 반복한다.
-            // 이렇게 하면 중복된 수를 뽑지 않을 수 있다.
-            // 그냥 저장하지 않고 <span>태그로 둘러싸여 저장한다.
-            let numbers2 = [];
-            for (let i = 0; i < 6; i++) {
-                numbers2.push(
-                    '<span>' + numbers1.splice(Math.random() * 100 % numbers1.length, 1) + '</span>'
-                );
+            let str = '';
+            for (let i = 0; i < ary.length; i++) {
+                str += '<span>' + ary[i] + '</span>';
             }
-
-            // number2의 6개의 요소들을 한 문자열로 통합하여, lotto속에 저장한다.
-            lotto.innerHTML = numbers2.join('');
+            lotto.innerHTML = str;
         }
-        // 추정 시간 비효율도 = O(51);
 
-        btn.onclick = generateLotto;
+        // 2. 1~45까지의 임의의 수를 6개 배열저장
+        function generateNumber() {
+            result = [];
+            for (let i = 0; i < 6;) {
+                let temp = parseInt(Math.random() * 45 + 1);
+                if (dupValueCheck(result, temp) == null) {
+                    result.push(temp);
+                    i++;
+                }
+            }
+            return result;
+        }
+
+        // 3. 중복값 체크하는 함수.
+        function dupValueCheck(ary, checkNum) {
+            // 배열, 값 체크 기능.
+            // 배열에 찾는값이 있으면 인덱스값을 반환, -1 반환.
+            for (let i = 0; i < ary.length; i++) {
+                if (ary[i] == checkNum) {
+                    return i;
+                }
+            }
+            return null;  // 찾는 값이 없다는 의미
+        }
     </script>
 </body>
 
