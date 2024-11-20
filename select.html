@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Select.html</title>
+        <style>
+            #container {
+                width: 400px;
+                height: 400px;
+                background-color: yellow;
+            }
+            #container span {
+                display: inline-block;
+                font-size: large;
+                width: 110px;
+                margin: 2px;
+                padding: 1px;
+                border: 1px solid red;
+            }
+        </style>
+    </head>
+    <body>
+        입력 : <input type="text" id="userValue">
+        <button id="deleteWord">삭제</button>
+
+        <div id="container">
+            <span>Dolor</span><span>Ipsum</span>
+        </div>
+        <script>
+            let str = 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt corporis quam, natus veniam reprehenderit distinctio enim libero odit repudiandae amet inventore iste placeat nostrum totam voluptate voluptatum esse delectus quibusdam.';
+            let strAry = str.split(' ');
+            strAry.forEach(word => {
+                let span = document.createElement('span');
+                span.innerText = word;
+                container.appendChild(span);
+            })
+
+            deleteWord.onclick = function(e) {
+                let deleteObject = userValue.value;
+                let spans = container.children;
+                for (let i = 0; i < spans.length; i++) {
+                    if (spans[i].innerText == deleteObject) {
+                        spans[i].remove();
+                    }
+                }
+            }
+
+            let no = 0;
+            let job = setInterval(function() {
+                if (no > 0) {
+                    console.log(no--);
+                }
+                else if (container.children.length > 0) {
+                    console.log("실패");
+                    clearInterval(job);
+                }
+                else {
+                    console.log("성공");
+                    clearInterval(job);
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>

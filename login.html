@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <table border="2">
+            <tr>
+                <th>아이디</th>
+                <td>
+                    <input type="text" name="uid" id="uid">
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" name="upw" id="upw">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button>로그인</button>
+                </td>
+            </tr>
+        </table>
+        <script>
+            let members = [
+                {id: 'user01', pw: '1111', name: '사용자1'},
+                {id: 'user02', pw: '2222', name: '사용자2'},
+                {id: 'user03', pw: '3333', name: '사용자3'}
+            ]
+
+            document.querySelector('button').onclick = function(event) {
+                for (let index = 0; index < members.length; index++) {  // index = 0, 1, ..., length-1
+
+                    let member = members[index];
+
+                    if (member.id == uid.value && member.pw == upw.value) { // 둘 다 일치하면 조기 종료
+                        alert("로그인 성공!");
+                        return;
+                    }
+                }
+                alert("로그인 실패 ㅠㅠ");  // 일치하는게 없으면 여기까지 온다
+            }
+
+            document.querySelector('button').onclick = function(event) {
+                result = members.filter(value => value.id == uid.value && value.pw == upw.value)
+                // value.id == uid.value이고 value.pw == upw.value인 원소(value)들만 살려주겠다.
+
+                if (result.length > 0) {    // length가 0이면 일치하는 게 없다는 뜻이고, 1이상이면 일치하는게 있다는 뜻이다.
+                    alert('성공');
+                }
+                else {
+                    alert('실패');
+                }
+            }
+
+            document.querySelector('button').onclick = function(event) {
+                let result = '실패!';
+                members.forEach(value => {
+                    if (value.id == uid.value && value.pw == upw.value) {
+                        result = '성공!';
+                        return;
+                    }
+                })
+                
+                alert(result);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <select multiple style="height:150px">
+            <option>Row1</option>
+            <option>Row2</option>
+            <option>Row3</option>
+            <option>Row4</option>
+            <option>Row5</option>
+        </select>
+        <button id="moveRight">+</button>
+        <button id="moveLeft">-</button>
+        <select multiple style="height:150px">
+            <option>Row6</option>
+            <option>Row7</option>
+            <option>Row8</option>
+            <option>Row9</option>
+            <option>Row10</option>
+        </select>
+        <script>
+            function move(from, to) {
+                let index = document.querySelector(from).selectedIndex;
+                let option = document.querySelectorAll(from + ' option')[index];
+
+                option.remove();
+                document.querySelector(to).appendChild(option);
+            }
+
+            moveRight.onclick = function(event) {
+                while (document.querySelector('select').selectedIndex > -1) {
+                    move('select', 'select:nth-of-type(2)');
+                }
+            }
+
+            moveLeft.onclick = function(event) {
+                while (document.querySelector('select:nth-of-type(2)').selectedIndex > - 1) {
+                    move('select:nth-of-type(2)', 'select');
+                }
+            }
+        </script>
+    </body>
+</html>

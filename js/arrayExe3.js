@@ -5,15 +5,9 @@
     => femaleAry에 저장.
 */
 
-femaleAry = empAry.filter(function(elmnt) {
-    if (elmnt.gender.toLowerCase() == "female" && elmnt.salary > 5000) {
-        return true;
-    }
-    else {
-        return false;
-    }
-});
-
+femaleAry = empAry.filter(
+    (data) => (data.gender.toLowerCase() == "female" && data.salary > 5000)
+);
 console.log("Result is ", femaleAry);
 
 // let friendAry = [
