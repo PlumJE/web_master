@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>상품목록 페이지</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container text-center">
+            <h1>상품목록 페이지</h1>
+            <a href="welcome.html">메인 페이지로</a>
+            <div class="row">
+
+
+            </div>
+        </div>
+        <script>
+            let productData = JSON.parse(localStorage.getItem('productData'));
+            let cartData = JSON.parse(localStorage.getItem('cartData'));
+
+            // HTML 놓을대상 어느위치
+            productData.forEach(product => {
+                let template = 
+                    `<div class="col" data-pcode="${product.pcode}">
+                        <div class="card" style="width: 18rem;">
+                            <img src="images/${product.image}" height="180px" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.pcode}</h5>
+                                <p class="card-text">${product.pname}<br>${product.price}</br></p>
+                                <a href="" class="btn btn-primary">장바구니 담기</a>
+                            </div>
+                        </div>
+                    </div>`;
+                document.querySelector('div.row').insertAdjacentHTML("beforeend", template);
+            })
+
+            // 사용자 장바구니에 담는 행위
+            document.querySelectorAll('a.btn.btn-primary').forEach(item => {
+                item.addEventListener('click', e => {
+                    // 기본기능 차단.
+                    e.preventDefault();
+
+                    let id = localStorage.getItem('logId');
+                    let pcode = e.target.closest('div.col').getAttribute('data-pcode');
+                    
+                    console.log(cartData);
+
+                    // 장바구니에 id, pcode 이미 있으면 수량 증가.
+                    let result = cartData.filter(cart => cart.id == id && cart.pcode == pcode);
+                    if (result.length) {
+                        console.log("장바구니에 이미 있습니다.");
+                        // 있으면 수량증가.
+                        cartData.forEach(cart => {
+                            if (cart.id == id && cart.pcode == pcode) {
+                                cart.qty++;
+                            }
+                        })
+                    }
+                    else {
+                        console.log("장바구니에 없습니다.");
+                        // 없으면 추가.
+                        cartData.push({
+                            id: id, 
+                            pcode: pcode, 
+                            qty: 1
+                        });
+                    }
+
+                    console.log(cartData);
+
+                    localStorage.setItem('cartData', JSON.stringify(cartData));
+                })
+            })
+        </script>
+    </body>
+</html>

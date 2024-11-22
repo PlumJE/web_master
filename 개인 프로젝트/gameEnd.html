@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Hampter Run</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <style>
+            body {
+                background-color: ivory;
+            }
+            div.container {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                padding: 20px;
+                background-image: url("img/배경화면.jpg");
+                background-size: 100% 100%;
+                height: 40rem;
+            }
+            div.m-auto {
+                width: 30rem;
+            }
+            div.card.text-center {
+                padding: 20px;
+            }
+            div.card-img-top {
+                background-size: 100% 100%;
+                height: 200px;
+            }
+            input {
+                width: 100%;
+            }
+            #scorelistGUI {
+                display: none;
+            }
+            thead {
+                background-color: burlywood;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="m-auto">
+                <div id="scoringGUI" class="card text-center">
+                    <img class="card-img-top" src="img/햄스터_게임오버.jpg" alt="...">
+                    <div class="card-body">
+                        <h1 class="card-title">Game End!</h1>
+                        <p class="card-text">Your score is : ???</p>
+                        <a href="index.html">처음으로 돌아가기</a>
+                        <div><input id="nameinput" type="text" placeholder="이름을 입력하세요"></div>
+                        <div><input id="pswdinput" type="password" placeholder="최고점 갱신을 위해 비밀번호를 입력하세요"></div>
+                        <button id="goto_scorelistGUI">최고점 갱신 및 스킵</button>
+                    </div>
+                </div>
+                <div id="scorelistGUI" class="card text-center">
+                    <div class="card-body">
+                        <table>
+                            <h1 class="card-title">Game End!</h1>
+                            <p class="card-text">Your score is : ???</p>
+                            <a href="index.html">처음으로 돌아가기</a>
+                            <thead class="w-100 p-3">
+                                <tr><td>순위</td><td>이름</td><td>점수</td></tr>
+                            </thead>
+                            <tbody id="scorelisttable">
+                                <!-- 여기에 이름-점수 쌍의 리스트들이 위에서 아래로 나열된다. -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/gameEnd.js"></script>
+    </body>
+</html>
