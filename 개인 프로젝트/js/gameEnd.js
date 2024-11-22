@@ -18,7 +18,13 @@ goto_scorelistGUI.onclick = function(event) {
     scoringGUI.style.display = "none";
     scorelistGUI.style.display = "block";
     read_scorelist();
-}
+};
+
+document.querySelectorAll('button.restart').forEach(button => {
+    button.onclick = function(event) {
+        location.href = "index.html";
+    }
+});
 
 // scorelist에 정보를 쓴다
 function write_scorelist(name, pswd, score) {

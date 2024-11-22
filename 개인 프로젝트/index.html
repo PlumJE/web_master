@@ -8,7 +8,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         <style>
             body {
-                background-color: ivory;
+                background-color: papayawhip;
             }
             div.container {
                 margin-top: 20px;
@@ -16,40 +16,54 @@
                 padding: 20px;
                 background-image: url("img/배경화면.jpg");
                 background-size: 100% 100%;
-                height: 40rem;
+                height: 900px;
             }
             div.m-auto {
-                width: 30rem;
+                width: 1000px;
             }
             div.card.text-center {
+                background-color: khaki;
                 padding: 20px;
             }
-            div.card-img-top {
+            img.card-img-top {
                 background-size: 100% 100%;
-                height: 200px;
+                border-radius: 10px;
+                height: 500px;
             }
             input {
                 width: 100%;
+                margin: 2px;
             }
-            #scorelistGUI {
+            button {
+                margin: 2px;
+            }
+            #tutorialGUI {
                 display: none;
             }
-            thead {
-                background-color: burlywood;
+            button.btn.btn-danger {
+                display: none;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="m-auto">
-                <div id="" class="card text-center">
+                <div id="titleGUI" class="card text-center">
                     <img class="card-img-top" src="img/타이틀_로고.png" alt="...">
                     <div class="card-body">
-                        
+                        <button id="startbutton" class="btn btn-warning">게임 시작!</button>
+                    </div>
+                </div>
+                <div id="tutorialGUI" class="card text-center">
+                    <img class="card-img-top" src="img/튜토리얼_1.jpg" alt="...">
+                    <div class="card-body">
+                        <button id="prevbutton" class="btn btn-warning">이전</button>
+                        <button id="startbutton2" class="btn btn-danger">시작!</button>
+                        <button id="nextbutton" class="btn btn-warning">다음</button>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="js/gameEnd.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
