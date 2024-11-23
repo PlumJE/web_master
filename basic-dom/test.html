@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <table border="2">
+            <tr>
+                <th>상품번호</th>
+                <td><input type="text" name="prodCode" id="prodCode"></td>
+            </tr>
+            <tr>
+                <th>상품명</th>
+                <td><input type="text" name="prodName" id="prodName"></td>
+            </tr>
+            <tr>
+                <th>가격</th>
+                <td><input type="number" name="price" id="price"></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button>추가</button></td>
+            </tr>
+        </table>
+        <hr>
+        <table>
+            <thead>
+                <th><input type="checkbox"></th>
+                <th>상품코드</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>삭제</th>
+            </thead>
+            <tbody id="list">
+
+            </tbody>
+        </table>
+        <script>
+            document.querySelector('button').onclick = function(event) {
+                let tr = document.createElement('tr');
+
+                let checkbox = document.createElement('input');
+                checkbox.type = ch
+                tr.appendChild(checkbox);
+
+                let td = document.createElement('td');
+                td.innerText = prodCode.value;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerText = prodName.value;
+                tr.appendChild(td);
+
+                td = document.createElement('td');
+                td.innerText = price.value;
+                tr.appendChild(td);
+
+                list.appendChild(tr);
+            }
+        </script>
+    </body>
+</html>
