@@ -1,3 +1,34 @@
+/** 게임 전체적 처리 **/
+let gameover = false;
+let score = 0;
+let summonspeed = 2000;
+let collisionDetect = function(a, b) {
+    let xValue = b.getBoundingClientRect().x - (a.getBoundingClientRect().x + a.getBoundingClientRect().width);
+    let yValue = b.getBoundingClientRect().y - (a.getBoundingClientRect().y + a.getBoundingClientRect().height);
+    if (xValue < 0 && yValue < 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+let gamerunning = setInterval(function() {
+    let random_altitude = parseInt(Math.random() * 500 + 100);
+
+    if (Math.random() < 0.5) {
+        sendSeed(random_altitude, 10);
+    }
+    else {
+        sendCat(random_altitude, 10);
+    }
+
+    if (gameover) {
+        clearInterval(gamerunning);
+    }
+
+}, summonspeed);
+
+
 /** 햄스터에 관한 처리 **/
 hampter.cooltime = 0;   // 햄스터의 뛰기 쿨타임
 hampter.altitute = 600; // 햄스터의 고도. 아래쪽으로 갈수록 커진다.
@@ -21,12 +52,16 @@ document.onkeydown = function(event) {
         hampter.altitute += hampter.vel;
         hampter.vel += 5;
         hampter.style.top = `${hampter.altitute}px`;
-        // console.log('햄프터의 현재 고도 :', hampter.getBoundingClientRect().top - 20);
+
         if (hampter.altitute > 600 || hampter.isspacepushed == true) {
             hampter.style.top = `600px`;
             clearInterval(timerId);
         }
-    }, 10);
+
+        if (gameover) {
+            clearInterval(gamerunning);
+        }
+    }, 50);
 }
 
 setInterval(function() {
@@ -35,6 +70,10 @@ setInterval(function() {
     }
     else {
         hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어1.png'
+    }
+
+    if (gameover) {
+        clearInterval(gamerunning);
     }
 }, 100);
 
@@ -50,12 +89,21 @@ function sendSeed(top, speed) {
     document.querySelector('main').appendChild(seed);
 
     let timerId = setInterval(function() {
-        let left = parseInt(seed.getBoundingClientRect().left - 325)
+        let left = parseInt(seed.getBoundingClientRect().left - 500);
         seed.style.left = `${left}px`;
 
+        if (collisionDetect(seed, hampter)) {
+            score++;
+            clearInterval(timerId);
+            seed.remove();
+        }
         if (left < 0) {
             clearInterval(timerId);
             seed.remove();
+        }
+
+        if (gameover) {
+            clearInterval(gamerunning);
         }
     }, speed);
 }
@@ -72,12 +120,24 @@ function sendCat(top, speed) {
     document.querySelector('main').appendChild(cat);
 
     let timerId = setInterval(function() {
-        let left = parseInt(cat.getBoundingClientRect().left - 350)
+        let left = parseInt(cat.getBoundingClientRect().left - 500);
         cat.style.left = `${left}px`;
 
+        if (collisionDetect(cat, hampter)) {
+            gameover = true;
+            clearInterval(timerId);
+            cat.remove();
+            alert('게임오버!');
+        }
         if (left < 0) {
             clearInterval(timerId);
             cat.remove();
         }
+
+        if (gameover) {
+            clearInterval(gamerunning);
+        }
     }, speed);
 }
+
+
