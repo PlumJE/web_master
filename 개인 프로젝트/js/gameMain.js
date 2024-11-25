@@ -1,16 +1,33 @@
 /** 게임 전체적 처리 **/
-let gameover = false;
 let score = 0;
-let summonspeed = 2000;
+let summoninterval = 2000;
 let collisionDetect = function(a, b) {
-    let xValue = b.getBoundingClientRect().x - (a.getBoundingClientRect().x + a.getBoundingClientRect().width);
-    let yValue = b.getBoundingClientRect().y - (a.getBoundingClientRect().y + a.getBoundingClientRect().height);
-    if (xValue < 0 && yValue < 0) {
-        return true;
-    }
-    else {
+    a = a.getBoundingClientRect();
+    b = b.getBoundingClientRect();
+
+    if (a.left > b.right) {
         return false;
     }
+    if (a.right < b.left) {
+        return false;
+    }
+    if (a.top > b.bottom) {
+        return false;
+    }
+    if (a.bottom < b.top) {
+        return false;
+    }
+    return true;
+}
+let getscore = function() {
+    score++;
+    scoreboard.innerText = `점수 : ${score}`;
+    summoninterval--;
+}
+let gameover = function() {
+    localStorage.score = JSON.stringify(score);
+    alert('게임오버!');
+    location.href = "gameEnd.html";
 }
 let gamerunning = setInterval(function() {
     let random_altitude = parseInt(Math.random() * 500 + 100);
@@ -21,12 +38,7 @@ let gamerunning = setInterval(function() {
     else {
         sendCat(random_altitude, 10);
     }
-
-    if (gameover) {
-        clearInterval(gamerunning);
-    }
-
-}, summonspeed);
+}, summoninterval);
 
 
 /** 햄스터에 관한 처리 **/
@@ -57,10 +69,6 @@ document.onkeydown = function(event) {
             hampter.style.top = `600px`;
             clearInterval(timerId);
         }
-
-        if (gameover) {
-            clearInterval(gamerunning);
-        }
     }, 50);
 }
 
@@ -71,10 +79,6 @@ setInterval(function() {
     else {
         hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어1.png'
     }
-
-    if (gameover) {
-        clearInterval(gamerunning);
-    }
 }, 100);
 
 
@@ -82,28 +86,28 @@ setInterval(function() {
 function sendSeed(top, speed) {
     // 인터벌 돌리기 이전 초기화 작업
     let seed = document.createElement('img');
+    let left = 1200;
+
     seed.src = 'img/해씨.png';
     seed.style.position = 'absolute';
-    seed.style.left = `1200px`;
+    seed.style.left = `${left}px`;
     seed.style.top = `${top}px`;
     document.querySelector('main').appendChild(seed);
 
+    console.log(seed.getBoundingClientRect().left);
     let timerId = setInterval(function() {
-        let left = parseInt(seed.getBoundingClientRect().left - 500);
+        left -= 10;
         seed.style.left = `${left}px`;
+        console.log(left);
 
         if (collisionDetect(seed, hampter)) {
-            score++;
             clearInterval(timerId);
             seed.remove();
+            getscore();
         }
         if (left < 0) {
             clearInterval(timerId);
             seed.remove();
-        }
-
-        if (gameover) {
-            clearInterval(gamerunning);
         }
     }, speed);
 }
@@ -113,31 +117,29 @@ function sendSeed(top, speed) {
 function sendCat(top, speed) {
     // 인터벌 돌리기 이전 초기화 작업
     let cat = document.createElement('img');
+    let left = 1200;
+
     cat.src = 'img/냥이.png';
     cat.style.position = 'absolute';
-    cat.style.left = `1200px`;
+    cat.style.left = `${left}px`;
     cat.style.top = `${top}px`;
     document.querySelector('main').appendChild(cat);
 
+    console.log(cat.getBoundingClientRect().left);
     let timerId = setInterval(function() {
-        let left = parseInt(cat.getBoundingClientRect().left - 500);
+        left -= 10;
         cat.style.left = `${left}px`;
+        console.log(left);
 
         if (collisionDetect(cat, hampter)) {
-            gameover = true;
+            hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어3.png';
             clearInterval(timerId);
             cat.remove();
-            alert('게임오버!');
+            gameover();
         }
         if (left < 0) {
             clearInterval(timerId);
             cat.remove();
         }
-
-        if (gameover) {
-            clearInterval(gamerunning);
-        }
     }, speed);
 }
-
-

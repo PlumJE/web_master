@@ -1,10 +1,17 @@
+// 초기 행동
+document.querySelectorAll('p.card-text').forEach(item => {
+    item.innerText = "당신의 점수는 : " + localStorage.score;
+});
+
+
 // scorelist 화면으로 넘어간다
 goto_scorelistGUI.onclick = function(event) {
     let name = nameinput.value;
     let pswd = pswdinput.value;
     
     if (name && pswd) {
-        if (write_scorelist(name, pswd, 100) == false) {
+        let newscore = JSON.parse(localStorage.score);
+        if (write_scorelist(name, pswd, newscore) == false) {
             alert("기록을 갱신하기 위한 비밀번호가 틀렸습니다.");
             return;
         }
@@ -26,6 +33,7 @@ document.querySelectorAll('button.restart').forEach(button => {
     }
 });
 
+
 // scorelist에 정보를 쓴다
 function write_scorelist(name, pswd, score) {
     let scorelist = JSON.parse(localStorage.scorelist);
@@ -43,6 +51,7 @@ function write_scorelist(name, pswd, score) {
     localStorage.scorelist = JSON.stringify(scorelist);
     return true;
 }
+
 
 // score에서 정보를 읽어 화면에 표시한다
 function read_scorelist() {

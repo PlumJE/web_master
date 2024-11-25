@@ -5,7 +5,7 @@ let tutorialpage = 1;
 if (!'scorelist' in localStorage) {
     localStorage.scorelist = JSON.stringify([{name:'이지응', pswd:'dlwldmd', score:0}]);
 }
-
+localStorage.score = '0';
 
 startbutton.onclick = function(event) {
     titleGUI.style.display = "none";
@@ -37,10 +37,19 @@ function changeTutorial(changeamount) {
     }
 
     tutorialGUI.querySelector('img.card-img-top').src = `img/튜토리얼_${tutorialpage}.jpg`;
-    if (tutorialpage == tutorialpages) {
+    if (tutorialpage == 1) {
+        prevbutton.style.display = 'none';
+        startbutton2.style.display = 'none';
+        nextbutton.style.display = 'inline';
+    }
+    else if (tutorialpage == tutorialpages){
+        prevbutton.style.display = 'inline';
         startbutton2.style.display = 'inline';
+        nextbutton.style.display = 'none';
     }
     else {
+        prevbutton.style.display = 'inline';
         startbutton2.style.display = 'none';
+        nextbutton.style.display = 'inline';
     }
 }

@@ -33,12 +33,21 @@
                 left: 100px;    /* left는 x와 같다 */
                 top: 600px;     /* top은 y와 같다 */
             }
+            #scoreboard {
+                position: absolute;
+                width: 200px;
+                left: 1120px;
+                top: 0px;
+                background-color: rgba(255, 255, 255, 0.5);
+                font-size: xx-large;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <main>
                 <img id="hampter" src="img/햄스터_플레이어1.png">
+                <p id="scoreboard">점수 : 0</p>
             </main>
         </div>
         <script src="js/gameMain.js"></script>
