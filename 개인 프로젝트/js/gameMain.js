@@ -22,7 +22,9 @@ let collisionDetect = function(a, b) {
 let getscore = function() {
     score++;
     scoreboard.innerText = `점수 : ${score}`;
-    summoninterval--;
+    if (summoninterval > 10) {
+        summoninterval--;
+    }
 }
 let gameover = function() {
     localStorage.score = JSON.stringify(score);
