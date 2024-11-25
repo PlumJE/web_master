@@ -55,14 +55,17 @@ function write_scorelist(name, pswd, score) {
 
 // score에서 정보를 읽어 화면에 표시한다
 function read_scorelist() {
-    JSON.parse(localStorage.scorelist).forEach(scoreinfo => {
+    let rank = 1;
+    JSON.parse(localStorage.scorelist).sort((a, b) => (b.score - a.score)).forEach(scoreinfo => {
         let tr = document.createElement('tr');
 
-        let ranktd = `<td>0</td>`;
+        let ranktd = `<td>${rank}</td>`;
         let nametd = `<td>${scoreinfo.name}</td>`;
         let scoretd = `<td>${scoreinfo.score}</td>`;
 
         tr.innerHTML = ranktd + nametd + scoretd;
         scorelisttable.appendChild(tr);
+
+        rank++;
     });
 }

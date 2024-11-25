@@ -2,8 +2,8 @@
 const tutorialpages = 3;
 let tutorialpage = 1;
 
-if (!'scorelist' in localStorage) {
-    localStorage.scorelist = JSON.stringify([{name:'이지응', pswd:'dlwldmd', score:0}]);
+if (localStorage.scorelist == undefined) {
+    localStorage.scorelist = JSON.stringify([]);
 }
 localStorage.score = '0';
 
