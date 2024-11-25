@@ -22,7 +22,9 @@ let collisionDetect = function(a, b) {
 let getscore = function() {
     score++;
     scoreboard.innerText = `점수 : ${score}`;
-    summoninterval--;
+    if (summoninterval > 10) {
+        summoninterval--;
+    }
 }
 let gameover = function() {
     localStorage.score = JSON.stringify(score);
@@ -94,11 +96,9 @@ function sendSeed(top, speed) {
     seed.style.top = `${top}px`;
     document.querySelector('main').appendChild(seed);
 
-    console.log(seed.getBoundingClientRect().left);
     let timerId = setInterval(function() {
         left -= 10;
         seed.style.left = `${left}px`;
-        console.log(left);
 
         if (collisionDetect(seed, hampter)) {
             clearInterval(timerId);
@@ -125,11 +125,9 @@ function sendCat(top, speed) {
     cat.style.top = `${top}px`;
     document.querySelector('main').appendChild(cat);
 
-    console.log(cat.getBoundingClientRect().left);
     let timerId = setInterval(function() {
         left -= 10;
         cat.style.left = `${left}px`;
-        console.log(left);
 
         if (collisionDetect(cat, hampter)) {
             hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어3.png';
