@@ -22,8 +22,8 @@ let collisionDetect = function(a, b) {
 let getscore = function() {
     score++;
     scoreboard.innerText = `점수 : ${score}`;
-    if (summoninterval > 10) {
-        summoninterval--;
+    if (summoninterval > 100) {
+        summoninterval -= 10;
     }
 }
 let gameover = function() {
