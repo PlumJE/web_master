@@ -19,6 +19,7 @@ let collisionDetect = function(a, b) {
     }
     return true;
 }
+
 let getscore = function() {
     score++;
     scoreboard.innerText = `점수 : ${score}`;
@@ -26,11 +27,13 @@ let getscore = function() {
         summoninterval -= 10;
     }
 }
+
 let gameover = function() {
     localStorage.score = JSON.stringify(score);
     alert('게임오버!');
     location.href = "gameEnd.html";
 }
+
 let gamerunning = setInterval(function() {
     let random_altitude = parseInt(Math.random() * 500 + 100);
 
