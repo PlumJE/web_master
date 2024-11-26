@@ -78,11 +78,11 @@ document.onkeydown = function(event) {
 }
 
 setInterval(function() {
-    if (hampter.src == 'http://127.0.0.1:5500/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png') {
-        hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어2.png'
+    if (hampter.src == 'http://127.0.0.1:5500/%EA%B0%9C%EC%9D%B8%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png') {
+        hampter.src = 'http://127.0.0.1:5500/%EA%B0%9C%EC%9D%B8%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B42.png'
     }
     else {
-        hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어1.png'
+        hampter.src = 'http://127.0.0.1:5500/%EA%B0%9C%EC%9D%B8%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png'
     }
 }, 100);
 
