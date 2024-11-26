@@ -12,7 +12,7 @@ goto_scorelistGUI.onclick = function(event) {
     if (name && pswd) {
         let newscore = JSON.parse(localStorage.score);
         if (write_scorelist(name, pswd, newscore) == false) {
-            alert("기록을 갱신하기 위한 비밀번호가 틀렸습니다.");
+            alert("기록을 등록하기 위한 비밀번호가 틀렸습니다.");
             return;
         }
     }
