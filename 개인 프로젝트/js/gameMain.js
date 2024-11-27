@@ -1,9 +1,8 @@
 /** 게임 전체적 처리 **/
-const ip = document.location.href.replace('gameMain.html', ''); // console.log('ip is ', ip);
-const hampterimg1 = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png';
-const hampterimg2 = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B42.png';
-const jumpsound = new Audio(ip + '/mp3/jump.mp3');
-const scoresound = new Audio(ip + '/mp3/score.mp3');
+const hampterimg1 = './img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png';
+const hampterimg2 = './img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B42.png';
+const jumpsound = new Audio('./mp3/jump.mp3');
+const scoresound = new Audio('./mp3/score.mp3');
 let score = 0;
 let cooltime = 0;
 let summoninterval = 2000;
@@ -94,7 +93,7 @@ hampter.jump = function(event) {
 }
 
 setInterval(function() {
-    if (hampter.src == hampterimg1) {
+    if (hampter.getAttribute('src') == hampterimg1) {
         hampter.src = hampterimg2;
     }
     else {
@@ -149,7 +148,6 @@ function sendCat(top, speed) {
         cat.style.left = `${left}px`;
 
         if (collisionDetect(cat, hampter)) {
-            hampter.src = 'http://127.0.0.1:5500/img/햄스터_플레이어3.png';
             clearInterval(timerId);
             cat.remove();
             gameover();
@@ -160,3 +158,6 @@ function sendCat(top, speed) {
         }
     }, speed);
 }
+
+console.log(hampter.src);
+console.log(jumpsound.src);
