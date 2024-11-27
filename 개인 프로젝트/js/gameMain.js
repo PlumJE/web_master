@@ -5,6 +5,7 @@ const hampterimg2 = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC
 const jumpsound = new Audio(ip + '/mp3/jump.mp3');
 const scoresound = new Audio(ip + '/mp3/score.mp3');
 let score = 0;
+let cooltime = 0;
 let summoninterval = 2000;
 let collisionDetect = function(a, b) {
     a = a.getBoundingClientRect();
@@ -51,6 +52,19 @@ let gamerunning = setInterval(function() {
     }
 }, summoninterval);
 
+document.onkeydown = function(event) {
+    if (event.key == ' ' && event.repeat == false) {
+        hampter.jump();
+    }
+}
+
+document.querySelector('div.container').onclick = function(event) {
+    if (cooltime <= event.timeStamp) {
+        cooltime = event.timeStamp + 200;
+        hampter.jump();
+    }
+}
+
 
 /** 햄스터에 관한 처리 **/
 hampter.cooltime = 0;   // 햄스터의 뛰기 쿨타임
@@ -58,12 +72,7 @@ hampter.altitute = 600; // 햄스터의 고도. 아래쪽으로 갈수록 커진
 hampter.vel = -50;      // 햄스터의 속도. 아래쪽으로 갈수록 커진다.
 hampter.isspacepushed = false;  // 현재 스페이스바를 눌렀는지 여부
 
-document.onkeydown = function(event) {
-    // 함수를 실행할지 사전에 검열한다
-    if (event.key != ' ' || event.repeat == true) {
-        return;
-    }
-
+hampter.jump = function(event) {
     // 인터벌 돌리기 이전 초기화 작업    
     hampter.isspacepushed = true;
     hampter.altitute = hampter.getBoundingClientRect().top - 20;
