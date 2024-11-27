@@ -1,6 +1,9 @@
 /** 게임 전체적 처리 **/
-const ip = document.location.href.replace('gameMain.html', '');
-console.log('ip is ', ip);
+const ip = document.location.href.replace('gameMain.html', ''); // console.log('ip is ', ip);
+const hampterimg1 = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png';
+const hampterimg2 = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B42.png';
+const jumpsound = new Audio(ip + '/mp3/jump.mp3');
+const scoresound = new Audio(ip + '/mp3/score.mp3');
 let score = 0;
 let summoninterval = 2000;
 let collisionDetect = function(a, b) {
@@ -24,6 +27,7 @@ let collisionDetect = function(a, b) {
 
 let getscore = function() {
     score++;
+    scoresound.play();
     scoreboard.innerText = `점수 : ${score}`;
     if (summoninterval > 100) {
         summoninterval -= 10;
@@ -64,6 +68,7 @@ document.onkeydown = function(event) {
     hampter.isspacepushed = true;
     hampter.altitute = hampter.getBoundingClientRect().top - 20;
     hampter.vel = -50;
+    jumpsound.play();
 
     // 인터벌 본체를 돌린다.
     let timerId = setInterval(function() {  // 다음 함수를 0.5초마다 반복실행
@@ -80,11 +85,11 @@ document.onkeydown = function(event) {
 }
 
 setInterval(function() {
-    if (hampter.src == ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png') {
-        hampter.src = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B42.png'
+    if (hampter.src == hampterimg1) {
+        hampter.src = hampterimg2;
     }
     else {
-        hampter.src = ip + '/img/%ED%96%84%EC%8A%A4%ED%84%B0_%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B41.png'
+        hampter.src = hampterimg1;
     }
 }, 100);
 
